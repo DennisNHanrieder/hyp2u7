@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}UE07 Product Listing: Create Database{% endblock %}
+{% block main %}
+    <h2>GET /createdb</h2>
+    <p>This page creates the necessary database, table and product entries for running the exercise.</p>
+
+    <h3>Results</h3>
+    <p>Database created: {{ schemaCreated }}.</p>
+    <p>Table created: {{ tableCreated }}.</p>
+    <p>Number of products created: {{ nrOfUsersCreated }}.</p>
+{% endblock main %}

@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}UE07 Product Listing{% endblock %}
+
+{% block main %}
+    <hgroup>
+        <h1>UE07 Product Listing</h1>
+        <p class="lead">Export currently available products in multiple formats.</p>
+    </hgroup>
+
+    <h2>GET /</h2>
+    <p>This is the main page. Use it to access the different parts of the exercise.</p>
+
+    <div class="list-group">
+        <a href="{{ url_for("/xml") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <svg class="bi-2 align-self-center flex-shrink-0">
+                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#filetype-xml"></use>
+            </svg>
+            <div class="flex-fill">
+                <h6 class="mb-0">GET /xml</h6>
+                <p class="mb-0 opacity-75">Export the currently available products in XML format.</p>
+            </div>
+        </a>
+        <a href="{{ url_for("/json") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <svg class="bi-2 align-self-center flex-shrink-0">
+                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#filetype-json"></use>
+            </svg>
+            <div class="flex-fill">
+                <h6 class="mb-0">GET /json</h6>
+                <p class="mb-0 opacity-75">Export the currently available products in JSON format.</p>
+            </div>
+        </a>
+        <a href="{{ url_for("/pdf") }}" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <svg class="bi-2 align-self-center flex-shrink-0">
+                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#filetype-pdf"></use>
+            </svg>
+            <div class="flex-fill">
+                <h6 class="mb-0">GET /pdf</h6>
+                <p class="mb-0 opacity-75">Export the currently available products in PDF format.</p>
+            </div>
+        </a>
+        <a href="{{ url_for("/createdb") }}"
+           class="list-group-item list-group-item-action d-flex gap-3 py-3">
+            <svg class="bi-2 align-self-center flex-shrink-0">
+                <use href="{{ get_base_path() }}/../views/images/bootstrap-icons.svg#tools"></use>
+            </svg>
+            <div>
+                <h6 class="mb-0">GET /createdb</h6>
+                <p class="mb-0 opacity-75">Create the database "ue07_products" with the table "product" containing
+                    three example products.</p>
+            </div>
+        </a>
+    </div>
+{% endblock main %}

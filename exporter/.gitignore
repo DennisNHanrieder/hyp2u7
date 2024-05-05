@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+composer.phar
+/cache/
+/logs/*
+!/logs/README.md
+/vendor/

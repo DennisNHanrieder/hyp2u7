@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}UE07 Product Listing: 404 – Not Found{% endblock title %}
+
+{% block main %}
+    <h2>404 – Not Found</h2>
+    <p>This is the 404 view.</p>
+    <p>It is displayed when a route not defined in the router is accessed. It also returns the HTTP status code 404,
+        which you can see in the console of your dev tools.</p>
+
+    <div class="alert alert-warning">
+        <h4>No styles?</h4>
+        <p>If you see this page without any styles and instead of the index page, your router setup needs to be fixed.
+            Your base path might need to be set correctly or added at all. Go to index.php and use
+            <code class="user-select-all">$router->setBasePath("/path/to/fhooe-router-skeleton/public");</code> to set it according to the
+            location of your project to your webserver's web root.</p>
+    </div>
+{% endblock main %}

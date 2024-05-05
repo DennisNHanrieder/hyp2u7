@@ -1,0 +1,49 @@
+{
+    "name": "fhooe/router-skeleton",
+    "description": "An example application or skeleton for getting started with fhooe/router.",
+    "license": "MIT",
+    "type": "project",
+    "keywords": [
+        "routing",
+        "example",
+        "education"
+    ],
+    "authors": [
+        {
+            "name": "Wolfgang Hochleitner",
+            "email": "wolfgang.hochleitner@fh-hagenberg.at",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "ext-pdo": "*",
+        "ext-xmlwriter": "*",
+        "ext-dom": "*",
+        "fhooe/router": "^1.0",
+        "fhooe/twig-extensions": "^1.0",
+        "monolog/monolog": "^3.5",
+        "twig/twig": "^3.8"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "": [
+                "src/"
+            ]
+        }
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse public views --memory-limit=-1 --level 9",
+        "start": [
+            "echo 'Web server launched on http://localhost:8888'",
+            "php -S localhost:8888 -t public"
+        ],
+        "test": [
+            "@phpstan"
+        ]
+    }
+}

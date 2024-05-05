@@ -1,0 +1,17 @@
+# Exclude the JetBrains PhpStorm project directory from version control
+.idea/
+
+# Exclude Visual Studio directory
+.vscode/
+
+# Local history for Visual Studio Code
+.history/
+
+# Cache directory for Twig templates
+cache/
+
+# Directory for log files
+logs/
+
+# Composer vendor directory
+vendor/
