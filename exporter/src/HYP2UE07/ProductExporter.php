@@ -4,6 +4,7 @@ namespace HYP2UE07;
 
 use PDO;
 use Twig\Environment;
+use XMLWriter;
 
 /**
  * Takes data from a database and exports it to various formats (XML, JSON, PDF).
@@ -106,6 +107,34 @@ class ProductExporter
     {
         // TODO: Use either XMLWriter or DOM to create an XML file from the data in $products and write it into the file
         //       with $filename. The file can will be stored in /public. That's fine.
+
+        $xml = new XMLWriter();
+        $xml->openUri($filename);
+        //$xml->openMemory();
+        //$xml->setIndent(true);
+       $xml->startDocument('1.0', 'UTF-8');
+       $xml->startElement('products');
+
+// Loop through products and write XML elements
+        foreach ($products as $product) {
+            $xml->startElement('product');
+            $xml->writeElement('item_nr', $product->item_nr);
+            $xml->writeElement('product_name', $product->product_name);
+            $xml->writeElement('product_description', $product->product_description);
+            $xml->writeElement('available_quantity', $product->available_quantity);
+            $xml->writeElement('price', $product->price);
+
+            $xml->endElement();
+        }
+
+        //item_nr, product_name, product_description, available_quantity, price
+
+        $xml->endElement();
+        $xml->endDocument();
+        $xml->flush();
+
+// Write XML to file
+        file_put_contents($filename, $xml->outputMemory());
     }
 
     /**

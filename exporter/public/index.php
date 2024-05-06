@@ -71,14 +71,20 @@ $router->get("/xml", function () use ($twig) {
 
 $router->get("/json", function () use ($twig) {
     // TODO: Create a new ProductExporter object and pass the Twig object
+    $exporter = new \HYP2UE07\ProductExporter($twig);
     // TODO: Call the export() method. Use JSON from the ExportFormat enum as a type and specify a filename, e.g., products.json
+    $exporter->export(\HYP2UE07\ExportFormat::JSON, "product.json");
     // TODO: Call displayOutput() to render the template export.html.twig after the conversion has finished.
+    $exporter->displayOutput();
 });
 
 $router->get("/pdf", function () use ($twig) {
     // TODO: Create a new ProductExporter object and pass the Twig object
+    $exporter = new \HYP2UE07\ProductExporter($twig);
     // TODO: Call the export() method. Use PDF from the ExportFormat enum as a type and specify a filename, e.g., products.pdf
+    $exporter->export(\HYP2UE07\ExportFormat::PDF, "product.pdf");
     // TODO: Call displayOutput() to render the template export.html.twig after the conversion has finished.
+    $exporter->displayOutput();
 });
 
 $router->get("/createdb", function () use ($twig) {
