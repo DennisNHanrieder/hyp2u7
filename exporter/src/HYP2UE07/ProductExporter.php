@@ -72,8 +72,22 @@ class ProductExporter
      */
     public function export(ExportFormat $format, string $filename): void
     {
+        $this->format = $format;
+        $this->filename = $filename;
         // TODO: Make a database query using the PDO object to get the item_nr, product_name, product_description,
         //       available_quantity and price from the product table.
+        $query = "SELECT item_nr, product_name, product_description, available_quantity, price FROM product";
+        $statement = $this->dbh->prepare($query);
+        $statement->execute();
+
+        $products = $statement->fetchAll();
+        //var_dump($products);
+
+        match($format){
+            ExportFormat::XML => $this->exportXML($products, $filename),
+            ExportFormat::JSON => $this->exportJSON($products, $filename),
+            ExportFormat::PDF => $this->exportPDF($products, $filename),
+        };
 
         // TODO: Store the result (rows) array. This array contains all the three example products as objects (because
         //       of the PDO::FETCH_OBJ option in the PDO constructor).
@@ -137,5 +151,10 @@ class ProductExporter
         //       Beware: The string value from the enum must be retrieved via $this->format->name.
         //       "filename" is the name of the file that was just created. If it is located in /public it will create
         //         a working link in the template so the file can be viewed.
+
+        $this->twig->display("export.html.twig", [
+            "type" => $this->format->name,
+            "filename" => $this->filename
+        ]);
     }
 }
