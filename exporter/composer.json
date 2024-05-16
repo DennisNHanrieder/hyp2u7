@@ -23,7 +23,8 @@
         "fhooe/router": "^1.0",
         "fhooe/twig-extensions": "^1.0",
         "monolog/monolog": "^3.5",
-        "twig/twig": "^3.8"
+        "twig/twig": "^3.8",
+        "tecnickcom/tcpdf": "^6.7"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.10"

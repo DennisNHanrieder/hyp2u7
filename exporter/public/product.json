@@ -1,0 +1,25 @@
+{
+    "products": [
+        {
+            "item_nr": "11234115",
+            "product_name": "Game Controller",
+            "product_description": "Wireless Game Controller f\u00fcr PC",
+            "available_quantity": "234",
+            "price": "39.99"
+        },
+        {
+            "item_nr": "54325324",
+            "product_name": "Rennlenkrad",
+            "product_description": "Rennlenkrad f\u00fcr PC/Xbox/PS mit Force Feedback",
+            "available_quantity": "127",
+            "price": "329.00"
+        },
+        {
+            "item_nr": "21335689",
+            "product_name": "4K Monitor",
+            "product_description": "28\" 4K Gaming Monitor UHD IPS",
+            "available_quantity": "1234",
+            "price": "513.28"
+        }
+    ]
+}

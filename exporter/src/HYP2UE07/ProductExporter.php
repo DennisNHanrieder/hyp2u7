@@ -5,6 +5,7 @@ namespace HYP2UE07;
 use PDO;
 use Twig\Environment;
 use XMLWriter;
+use TCPDF;
 
 /**
  * Takes data from a database and exports it to various formats (XML, JSON, PDF).
@@ -108,33 +109,24 @@ class ProductExporter
         // TODO: Use either XMLWriter or DOM to create an XML file from the data in $products and write it into the file
         //       with $filename. The file can will be stored in /public. That's fine.
 
-        $xml = new XMLWriter();
-        $xml->openUri($filename);
-        //$xml->openMemory();
-        //$xml->setIndent(true);
-       $xml->startDocument('1.0', 'UTF-8');
-       $xml->startElement('products');
+        $writer = new XMLWriter();
+        $writer->openUri($filename);
+        $writer->setIndent(true);
 
-// Loop through products and write XML elements
-        foreach ($products as $product) {
-            $xml->startElement('product');
-            $xml->writeElement('item_nr', $product->item_nr);
-            $xml->writeElement('product_name', $product->product_name);
-            $xml->writeElement('product_description', $product->product_description);
-            $xml->writeElement('available_quantity', $product->available_quantity);
-            $xml->writeElement('price', $product->price);
 
-            $xml->endElement();
+
+
+        $writer->startDocument("1.0", "UTF-8");
+        $writer->startElement("products");
+        foreach($products as $product) {
+            $writer->startElement("products");
+            foreach ($product as $tag => $data) {
+                $writer->writeElement($tag, $data);
+            }    $writer->endElement();
         }
-
-        //item_nr, product_name, product_description, available_quantity, price
-
-        $xml->endElement();
-        $xml->endDocument();
-        $xml->flush();
-
-// Write XML to file
-        file_put_contents($filename, $xml->outputMemory());
+        $writer->endElement();
+        $writer->endDocument();
+        $writer->flush();
     }
 
     /**
@@ -147,6 +139,10 @@ class ProductExporter
     {
         // TODO: Use json_encode() to create a JSON data structure from $products and write it into the file
         //       with $filename. The file can will be stored in /public. That's fine.
+
+        $jsonArray["products"] = $products;
+        $jsonAssocArray = json_encode($jsonArray, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        file_put_contents($filename, $jsonAssocArray);
     }
 
     /**
@@ -166,6 +162,19 @@ class ProductExporter
 
         // TODO: Write the PDF in the /public directory. Beware: __DIR__ will give you the /src/HYP2UE07 directory.
         //       You can append /../ multiple times to go down a few directories from there again.
+
+        $html = $this->twig->render('pdf.html.twig', array('products' => $products));
+        $pdf = new TCPDF("P", "mm", "A4", true, "UTF-8", false);
+        $pdf->setCreator(PDF_CREATOR);
+        $pdf->setAuthor("Dennis Hanrieder");
+        $pdf->setTitle("PDF-Products");
+        $pdf->setSubject("PDF erstellen mit TCPDF");
+        $pdf->setKeywords("TCPDF, Products, PDF");
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->AddPage();
+        $pdf->writeHTML($html);
+        $pdf->Output($filename, "I");
     }
 
     /**

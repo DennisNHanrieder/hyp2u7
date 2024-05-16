@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+ <products>
+  <item_nr>11234115</item_nr>
+  <product_name>Game Controller</product_name>
+  <product_description>Wireless Game Controller für PC</product_description>
+  <available_quantity>234</available_quantity>
+  <price>39.99</price>
+ </products>
+ <products>
+  <item_nr>54325324</item_nr>
+  <product_name>Rennlenkrad</product_name>
+  <product_description>Rennlenkrad für PC/Xbox/PS mit Force Feedback</product_description>
+  <available_quantity>127</available_quantity>
+  <price>329.00</price>
+ </products>
+ <products>
+  <item_nr>21335689</item_nr>
+  <product_name>4K Monitor</product_name>
+  <product_description>28&quot; 4K Gaming Monitor UHD IPS</product_description>
+  <available_quantity>1234</available_quantity>
+  <price>513.28</price>
+ </products>
+</products>
